@@ -1,8 +1,6 @@
 // 全局拦截器，全局方法等逻辑
 import axios from 'axios';
-// import { Message } from 'element-plus';
-
-let apiCancelTokens = []; // 存放请求cancelToken
+import { message } from 'ant-design-vue';
 
 // request请求拦截处理
 axios.interceptors.request.use(
@@ -23,26 +21,19 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   res => {
     // 没登录，跳转登录
-    if (res.data.code === '318') {
-      window.location.href = res.data.data;
-      return;
-    }
+    // if (res.data.status === '318') {
+    //   window.location.href = res.data.data;
+    //   return;
+    // }
     // 请求成功，但是操作不成功时显示后端返回的错误信息
-    if (res.data.code !== '200') {
-      // Message({
-      //   message: res.data.msg || '获取数据失败，请稍后重试',
-      //   type: 'error',
-      //   duration: 2000
-      // });
+    if (res.data.status != '0') {
+      message.error(res.data.message || '网络拥堵，稍后再试', 5);
       return Promise.reject(res.data);
     }
-    return res.data.data;
+    return res.data.payload;
   },
   err => {
-    // Message({
-    //   message: `${err.response.data.msg || '服务访问失败'}`,
-    //   type: 'error'
-    // });
+    message.error('网络拥堵，稍后再试', 5);
     return Promise.reject(err);
   }
 );

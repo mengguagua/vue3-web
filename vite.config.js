@@ -7,10 +7,10 @@ export default defineConfig({
   server: {
     port: 8088,
     proxy: {
-      "/api": {
-        target: "http://localhost:3001",
+      "/mfm-core-etime": {
+        target: "http://192.168.3.xxx:8080/",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/mfm-core-etime/, "mfm-core-etime"),
       },
     },
   },

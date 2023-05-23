@@ -1,21 +1,22 @@
 <template>
   <div id="app">
     <Header class="header-all"></Header>
+<!--    <HeaderLight class="header-all"></HeaderLight>-->
     <div class="el-wrap-con">
       <div class="container">
         <div class="menu">
-          <a-menu
-              v-model:openKeys="openKeys"
-              v-model:selectedKeys="selectedKeys"
-              style="width: 231px;border-radius: 4px;"
-              mode="inline"
-              @click="handleClick"
-          >
-            <a-sub-menu v-for="(item, index) in tempLeftMenuArray" :key="item.menuUrl">
-              <template #title>{{ item.menuName }}</template>
-              <a-menu-item v-for="(ret, rIndex) in item.children" :key="ret.menuUrl">{{ ret.menuName }}</a-menu-item>
-            </a-sub-menu>
-          </a-menu>
+          <ul class="menu-list">
+            <li class="menu-item" v-for="(item, index) in tempLeftMenuArray" :key="index">
+              <button class="menu-button"><i class="el-icon-folder menu-icon"></i>{{item.menuName}}<i class="el-icon-arrow-right arrow"></i></button>
+              <ul class="menu-sub-list">
+                <li class="menu-item">
+                  <button class="menu-button" v-for="(ret, rIndex) in item.children" :key="rIndex" @click="goUrl(ret)">
+                    <i class="el-icon-tickets"></i>{{ret.menuName}}
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="wrap-con">
@@ -32,35 +33,21 @@
 </template>
 
 <script>
-import { getUserInfo } from '/src/service/interface.js';
 export default {
   name: 'App',
   components: {
   },
   data() {
     return {
-      openKeys: [],
-      selectedKeys: [],
       leftMenu: {},
       toggleSide: true,
       leftMenuArray: [],
       tempLeftMenuArray: [
         {
-          menuName: '一级菜单',
+          menuName: '强企先锋',
           menuUrl: '/pioneer',
           children: [
-            { menuName: '二级菜单', menuUrl: '/pioneer/study' },
-            { menuName: '二级菜单2', menuUrl: '/pioneer/study1' },
-            { menuName: '二级菜单3', menuUrl: '/pioneer/study2' },
-          ]
-        },
-        {
-          menuName: '一级菜单2',
-          menuUrl: '/pioneer2',
-          children: [
-            { menuName: '二级菜单', menuUrl: '/pioneer/study3' },
-            { menuName: '二级菜单2', menuUrl: '/pioneer/study4' },
-            { menuName: '二级菜单3', menuUrl: '/pioneer/study5' },
+            { menuName: '学而时习', menuUrl: '/pioneer/study' },
           ]
         },
       ]
@@ -76,12 +63,6 @@ export default {
     },
   },
   methods: {
-    handleClick({ item, key, keyPath }) {
-      console.log('ret'+item);
-      console.log('ret'+key);
-      console.log('ret'+keyPath);
-      this.$router.push(key);
-    },
     getMenuList() {
       this.leftMenuArray = this.tempLeftMenuArray; // 临时目录
       // this.Api.queryMenu().then(resp => {
@@ -94,12 +75,12 @@ export default {
       //   }
       // });
     },
+    goUrl(ret) {
+      this.$router.push(ret.menuUrl);
+    },
   },
-  mounted () {
+  mounted: function () {
     this.getMenuList(); // 获取菜单
-    // getUserInfo().then((resp) => {
-      localStorage.setItem('zjUser', JSON.stringify({"userId":"qilei","userName":"管理员","employeeId":2,"employeeName":"管理员"}));
-    // });
   },
 
 }
@@ -147,7 +128,7 @@ a {
     box-shadow: 0 2px 8px rgba(#404040, 0.15);
   }
   .el-wrap-con {
-    padding: 8px 12px 8px 12px;
+    padding: 8px;
     display: flex;
   }
   .container {
@@ -167,8 +148,67 @@ a {
     i {
       margin-right: 8px;
     }
+    .menu-list {
+      margin: 0;
+      display: block;
+      width: 100%;
+      padding: 8px;
+      list-style-type: none;
+      & + .menu-list {
+        border-top: 1px solid #ddd;
+      }
+    }
+    .menu-sub-list {
+      display: none;
+      padding: 8px;
+      background-color: var(--color-bg-secondary);
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(#404040, 0.15);
+      position: absolute;
+      left: 100%;
+      right: 0;
+      z-index: 100;
+      width: 100%;
+      top: 0;
+      flex-direction: column;
+      list-style-type: none;
+      &:hover {
+        display: flex;
+      }
+    }
     .menu-item {
       position: relative;
+    }
+    .menu-button {
+      font: inherit;
+      border: 0;
+      padding: 8px 8px;
+      padding-right: 36px;
+      width: 100%;
+      border-radius: 8px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background-color: var(--color-bg-secondary);
+      color: #606266;
+      &:hover {
+        background-color: var(--color-bg-primary-offset);
+        color: #333;
+        & + .menu-sub-list {
+          display: flex;
+        }
+        .menu-icon {
+          color: var(--color-text-primary);
+        }
+      }
+      .menu-icon {
+        color: var(--color-text-primary-offset);
+      }
+      .arrow {
+        position: absolute;
+        right: 10px;
+      }
     }
   }
   .wrap-con {
@@ -197,6 +237,40 @@ a {
       padding: 18px 20px 8px;
       overflow: hidden;
       background: #fff;
+    }
+  }
+}
+</style>
+
+
+<style lang="scss">
+// 全局样式优化
+// 修改表格紧凑度
+.el-table .el-table__cell {
+  padding: 8px 0;
+}
+.el-table th.el-table__cell>.cell {
+  padding: 0px 8px;
+}
+.el-button--small {
+  padding: 7px 12px;
+}
+// 弹窗样式
+.el-dialog--center {
+  .el-dialog__body {
+    padding: 15px 25px 10px;
+    max-height: calc(90vh - 125px);
+    overflow: auto;
+    .el-form-item {
+      margin-bottom: 12px;
+    }
+    .el-form-item__error {
+      padding-top: 0px;
+    }
+  }
+  .el-dialog__footer {
+    .el-button {
+      margin: 0 35px;
     }
   }
 }

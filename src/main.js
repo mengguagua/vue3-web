@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import router from './router'
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue' // 全局导入icon
@@ -18,5 +20,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.mixin(totalMixin)
 app.use(globalComponents)
 app.use(ElementPlus)
+app.use(Antd);
 app.use(router)
 app.mount('#app')

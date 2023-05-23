@@ -3,7 +3,8 @@
 section.head
   div.nav
     div.logo
-      span.title VUE2管理后台模板
+      img(src="/public/images/logo.svg")
+      span.title vue3+vite+antdv管理后台系统
 </template>
 
 <script>
@@ -34,11 +35,16 @@ export default {
   overflow: hidden;
   .nav {
     height: 70px;
-    background: #262f3e;
+    background: #1d2430;
     .logo {
-      padding: 24px 0 0 10px;
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+      height: 70px;
       .title {
+        margin-left: 10px;
         color: #fff;
+        font-size: 20px;
       }
     }
   }
