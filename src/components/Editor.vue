@@ -22,10 +22,10 @@ const props = defineProps(['value'])
 const emit = defineEmits(['updateValue'])
 const content = ref('')
 const myQuillEditor = ref()
-// watch(() => props.value, (val) => {
-//   console.log(toRaw(myQuillEditor.value))
-//   toRaw(myQuillEditor.value).setHTML(val)
-// }, { deep: true })
+watch(() => props.value, (val) => {
+  // console.log(toRaw(myQuillEditor.value))
+  toRaw(myQuillEditor.value).setHTML(val)
+}, { deep: true })
 const fileBtn = ref()
 const data = reactive({
   content: '',
