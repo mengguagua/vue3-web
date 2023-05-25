@@ -15,17 +15,23 @@
 <script setup>
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
-import { reactive, onMounted, ref, toRaw, watch } from 'vue'
+import { reactive, onMounted, ref, toRaw, watch, onUpdated } from 'vue'
 // import { backsite } from '@/api'
 
 const props = defineProps(['value'])
 const emit = defineEmits(['updateValue'])
 const content = ref('')
 const myQuillEditor = ref()
-watch(() => props.value, (val) => {
-  // console.log(toRaw(myQuillEditor.value))
-  toRaw(myQuillEditor.value).setHTML(val)
-}, { deep: true })
+// watch(() => props.value, (val) => {
+//   // console.log(toRaw(myQuillEditor.value))
+//   debugger
+//   // 特殊处理置空
+//   // if () {
+//   //
+//   // }
+//   let aa = content;
+//   toRaw(myQuillEditor.value).setHTML(val)
+// }, { deep: true })
 const fileBtn = ref()
 const data = reactive({
   content: '',
@@ -81,6 +87,10 @@ onMounted(() => {
   if (myQuillEditor.value) {
     quill.getModule('toolbar').addHandler('image', imgHandler)
   }
+  toRaw(myQuillEditor.value).setHTML(props.value)
+});
+// 更新清空
+onUpdated(() => {
   toRaw(myQuillEditor.value).setHTML(props.value)
 })
 </script>
