@@ -80,7 +80,7 @@ div
         a {{modalData.photo}}
     div
       div(style="color: rgba(0, 0, 0, 0.85)") 文章内容：
-      Editor(:value="modalData.content" @updateValue="getMsg")
+      Editor(:valueData="htmlContent" @handleChange="handleChange")
     div.footer
       a-button(@click="save" type="primary" size="small") 保存
       a-button(@click="doPublish(modalData)" type="primary" size="small") 发布
@@ -97,6 +97,7 @@ export default {
   components: {SearchLine},
   data() {
     return {
+      htmlContent: '',
       fileList: [],
       user: {},
       searchData: {
@@ -233,8 +234,9 @@ export default {
         },
       });
     },
-    getMsg(val) {
-      this.modalData.content = val;
+    handleChange(value) {
+      console.log('change-value:', value);
+      this.htmlContent = value;
     },
     save() {
       let data = {...this.modalData};
