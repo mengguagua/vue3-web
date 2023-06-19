@@ -11,7 +11,6 @@ export function getUserInfo(req) {
 export function uploadFile(req) {
   return axios.post(`${prefix}/sys/fileUpload/uploadFile`, req, {headers: {'Content-Type': 'multipart/form-data'}});
 }
-/*学而时习*/
 // 查询详情
 export function partyLearnView(req) {
   return axios.get(`${prefix}/party/partyLearn/view`, {params: req});

@@ -3,7 +3,7 @@
 section.head
   div.nav
     div.logo
-      img(src="/public/images/logo.svg")
+      //img(src="/public/images/logo.svg")
       span.title vue3+vite+antdv管理后台系统
 </template>
 

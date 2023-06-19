@@ -23,3 +23,21 @@
 - 工具方法统一写在src/plugins/mixin/mixin.js文件内
 - 公共组件统一写在src/components/global.js同目录内，此目录下组件做了统一注册操作。
 - 业务组件(页面)，按模块建文件夹，文件夹内写各个业务组件(页面)
+
+测试和生产url调用公司统一配置中心
+```
+console.log('dev运行:')
+let request = require('request');
+request('http://192.168.3.141:57163/api/web/config/downloadFile/5213', function(err, response, body){
+  //err 当前接口请求错误信息
+  //response 一般使用statusCode来获取接口的http的执行状态
+  //body 当前接口response返回的具体数据 返回的是一个jsonString类型的数据
+  //需要通过JSON.parse(body)来转换
+  if(!err && response.statusCode == 200){
+    console.log('接口回调2:')
+    console.log(body)
+    let res = JSON.parse(body);
+    console.log(res)
+  }
+});
+```
