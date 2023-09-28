@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   server: {
-    port: 8088,
+    port: 7088,
     proxy: {
       "/mfm-core-etime": {
         target: "http://192.168.3.xxx:8080/",

@@ -4,9 +4,11 @@
     <div class="search-line">
       <slot name="firstLine"></slot>
     </div>
-    <div v-show="hasSecondLine && showSecondLine" class="search-line">
-      <slot name="secondLine"></slot>
-    </div>
+    <Transition>
+      <div v-show="hasSecondLine && showSecondLine" class="search-line">
+        <slot name="secondLine"></slot>
+      </div>
+    </Transition>
   </a-form>
   <div class="btn-line">
     <a-button @click="submit" size="small" type="primary" style="margin-left: 10px">{{searchText}}</a-button>
@@ -90,5 +92,14 @@ export default {
 }
 .ant-btn-sm {
   padding: 0 14px;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
