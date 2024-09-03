@@ -11,6 +11,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue' // 全局导入ic
 import globalComponents from './components/global'
 import './service/api';
 import {totalMixin} from './plugins/mixin/mixin';
+import './theme.less';
 
 
 const app = createApp(App)

@@ -276,7 +276,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .footer {
   margin-top: 20px;
   text-align: center;

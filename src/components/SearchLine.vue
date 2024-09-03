@@ -60,7 +60,7 @@ export default {
     // 显示和隐藏的箭头颜色
     arrowColor: {
       type: String,
-      default: '#1785ff',
+      default: '#0050b3',
     },
   },
   data() {
