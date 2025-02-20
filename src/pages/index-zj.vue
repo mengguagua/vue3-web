@@ -48,21 +48,21 @@ export default {
       leftMenuArray: [],
       tempLeftMenuArray: [
         {
-          menuName: '一级菜单',
+          menuName: '强企先锋',
           menuUrl: '/pioneer',
           children: [
-            { menuName: '二级菜单', menuUrl: '/pioneer/study' },
-            { menuName: '二级菜单2', menuUrl: '/pioneer/study1' },
-            { menuName: '二级菜单3', menuUrl: '/pioneer/study2' },
+            { menuName: '学而时习', menuUrl: '/pioneer/study' },
+            { menuName: '红色堡垒', menuUrl: '/pioneer/study1' },
+            { menuName: '红色堡垒', menuUrl: '/pioneer/study2' },
           ]
         },
         {
-          menuName: '一级菜单2',
+          menuName: '强企先锋',
           menuUrl: '/pioneer2',
           children: [
-            { menuName: '二级菜单', menuUrl: '/pioneer/study3' },
-            { menuName: '二级菜单2', menuUrl: '/pioneer/study4' },
-            { menuName: '二级菜单3', menuUrl: '/pioneer/study5' },
+            { menuName: '学而时习', menuUrl: '/pioneer/study3' },
+            { menuName: '红色堡垒', menuUrl: '/pioneer/study4' },
+            { menuName: '红色堡垒', menuUrl: '/pioneer/study5' },
           ]
         },
       ]
@@ -99,9 +99,9 @@ export default {
   },
   mounted () {
     this.getMenuList(); // 获取菜单
-    // getUserInfo().then((resp) => {
-      localStorage.setItem('zjUser', JSON.stringify({"userId":"qilei","userName":"管理员","employeeId":2,"employeeName":"管理员"}));
-    // });
+    getUserInfo().then((resp) => {
+      localStorage.setItem('zjUser', JSON.stringify(resp));
+    });
   },
 
 }
@@ -119,7 +119,7 @@ export default {
 :root {
   --color-bg-primary: #d0d6df;
   --color-bg-primary-offset: #f1f3f7;
-  --color-bg-secondary: #fff;
+  --color-bg-secondary: #0978be;
   --color-text-primary: #3a3c42;
   --color-text-primary-offset: #898c94;
   --color-orange: #dc9960;
@@ -149,7 +149,7 @@ a {
     box-shadow: 0 2px 8px rgba(#404040, 0.15);
   }
   .content-wrap-con {
-    padding: 8px 12px 8px 12px;
+    padding: 8px 4px 8px 2px;
     display: flex;
   }
   .container {
@@ -178,5 +178,34 @@ a {
     width: 100%;
     transition: all 0.3s;
   }
+}
+</style>
+<style>
+.ant-menu-root.ant-menu-inline {
+  background-color: #0978be !important;
+  color: #fff !important;
+}
+.ant-menu-root.ant-menu-inline :hover{
+  color: rgba(255,145,1,0.9) !important;
+}
+.ant-menu-submenu-arrow::before, .ant-menu-submenu-arrow::after {
+  background-color: #fff !important;
+}
+.ant-menu-submenu-selected {
+  color: #fff !important;
+  /*font-weight: 500 !important;*/
+}
+.ant-menu-title-content {
+  color: #fff !important;
+}
+.ant-menu-sub.ant-menu-inline > .ant-menu-item {
+  background-color: #0978be !important;
+}
+.ant-menu-item.ant-menu-item-only-child {
+  margin: 0 !important;
+  border-bottom: 0.5px solid rgba(0,0,0,0.2) !important;
+}
+.ant-menu-inline .ant-menu-item::after {
+  border-right: 3px solid #ff9101 !important;
 }
 </style>

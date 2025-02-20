@@ -3,7 +3,7 @@ const index = () => import('/src/pages/index.vue');
 const home = () => import('/src/pages/home.vue');
 const lostPage = () => import('/src/pages/404.vue');
 
-const register = () => import('/src/pages/registration/register.vue');
+const study = () => import('/src/pages/pioneer/study.vue');
 
 const routes = [
   {
@@ -18,11 +18,11 @@ const routes = [
     component: lostPage,
   },
   {
-    path: '/registration',
+    path: '/pioneer',
     name: '一级菜单',
     component: index,
     children: [
-      { path: 'register', name: '二级菜单', component: register },
+      { path: 'study', name: '二级菜单', component: study },
     ]
   },
 ]
