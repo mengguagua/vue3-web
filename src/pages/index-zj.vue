@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header class="header-all"></Header>
-    <div class="el-wrap-con">
+    <div class="content-wrap-con">
       <div class="container">
         <div class="menu">
           <a-menu
@@ -19,13 +19,15 @@
         </div>
       </div>
       <div class="wrap-con">
-        <el-breadcrumb>
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>{{routeName}}</el-breadcrumb-item>
-        </el-breadcrumb>
-        <el-scrollbar wrap-class="scrollbar-wrapper">
+        <div style="padding-left: 10px;font-size: 14px;">
+          <a-breadcrumb>
+            <a-breadcrumb-item>首页</a-breadcrumb-item>
+            <a-breadcrumb-item>{{routeName}}</a-breadcrumb-item>
+          </a-breadcrumb>
+        </div>
+        <div style="margin-top: 10px;padding: 0 10px;">
           <router-view></router-view>
-        </el-scrollbar>
+        </div>
       </div>
     </div>
   </div>
@@ -146,7 +148,7 @@ a {
     border-radius: 0 0 4px 4px;
     box-shadow: 0 2px 8px rgba(#404040, 0.15);
   }
-  .el-wrap-con {
+  .content-wrap-con {
     padding: 8px 4px 8px 2px;
     display: flex;
   }
@@ -175,29 +177,6 @@ a {
     position: relative;
     width: 100%;
     transition: all 0.3s;
-    .el-breadcrumb {
-      background: #fff;
-      padding: 8px;
-      line-height: 24px;
-      box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-      transition: all 0.3s;
-      border-radius: 4px;
-      .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link {
-        font-weight: 500;
-      }
-      .el-breadcrumb__separator {
-        font-weight: 500;
-      }
-    }
-    .el-scrollbar {
-      height: calc(100vh - 134px);
-      margin-top: 8px;
-      box-shadow: 0 10px 20px rgba(#404040, 0.15);
-      border-radius: 4px;
-      padding: 18px 20px 8px;
-      overflow: hidden;
-      background: #fff;
-    }
   }
 }
 </style>
